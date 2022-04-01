@@ -25,5 +25,6 @@ module.exports = {
     'max-len': ['error', { 'code': 150 }],
     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
     'object-curly-spacing': ['error', 'always'],
+    'linebreak-style': ['error', 'windows'],
   },
 };

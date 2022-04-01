@@ -2,13 +2,30 @@ import palette from '../../../Tools/palette';
 import styled, { css } from 'styled-components';
 import { CustomInput } from '../../../Tools/Elements/inputs';
 import { SchedulerButton } from '../../../Tools/Elements/buttons';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SignUp = () => {
+const PasswordRecovery = () => {
+  const navigate = useNavigate();
+  const [isButtonDisabled, setButtonDisabled] = useState(true);
   const onSubmitClick = () => {
     console.log('test');
   };
-  const navigate = useNavigate();
+
+  const onInputChange = (e: any) => {
+    const email = e.target.value;
+
+    if (
+      email.match(
+          // eslint-disable-next-line max-len
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      )
+    ) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  };
 
   return (
     <MainContent>
@@ -21,43 +38,13 @@ const SignUp = () => {
         Sign In
       </SchedulerButton>
       <ContentArea>
-        <PageTitle>SCHEDULER</PageTitle>
-        <Description>Recover Password</Description>
-        <SignUpContent>
-          <InputInlinePair>
-            <CustomInput isInputValid={true}>
-              <input type="text" id="firstnameInp" required />
-              <label htmlFor="firstnameInp">
-                <span>First Name</span>
-              </label>
-            </CustomInput>
-
-            <CustomInput isInputValid={true}>
-              <input type="text" id="lastnameInp" required />
-              <label htmlFor="lastnameInp">
-                <span>Last Name</span>
-              </label>
-            </CustomInput>
-          </InputInlinePair>
-
-          <CustomInput isInputValid={true}>
+        <PageTitle>SHEDULER</PageTitle>
+        <Descript>Recover Password</Descript>
+        <RecoveryContent>
+          <CustomInput isInputValid={true} onChange={(e) => onInputChange(e)}>
             <input type="text" id="emailInp" required />
             <label htmlFor="emailInp">
               <span>Email</span>
-            </label>
-          </CustomInput>
-
-          <CustomInput isInputValid={true}>
-            <input type="password" id="passwordInp" required />
-            <label htmlFor="passwordInp">
-              <span>Password</span>
-            </label>
-          </CustomInput>
-
-          <CustomInput isInputValid={true}>
-            <input type="password" id="confirmPasswordInp" required />
-            <label htmlFor="confirmPasswordInp">
-              <span>Confirm Password</span>
             </label>
           </CustomInput>
 
@@ -65,16 +52,17 @@ const SignUp = () => {
             styleType="default"
             darkMode={true}
             onClick={() => onSubmitClick()}
+            disabled={isButtonDisabled}
           >
-            Create Account
+            Reset Password
           </SchedulerButton>
-        </SignUpContent>
+        </RecoveryContent>
       </ContentArea>
     </MainContent>
   );
 };
 
-export default SignUp;
+export default PasswordRecovery;
 
 const MainContent = styled.div`
   width: 100%;
@@ -154,7 +142,7 @@ const PageTitle = styled.h2`
   font-weight: 900;
 `;
 
-const Description = styled.span`
+const Descript = styled.span`
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
@@ -163,7 +151,7 @@ const Description = styled.span`
   line-height: 1.7;
 `;
 
-const SignUpContent = styled.div`
+const RecoveryContent = styled.div`
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -193,19 +181,19 @@ const SignUpContent = styled.div`
   }
   @media ${(props) => props.theme.breakPoints.tablet} {
     max-width: 550px;
-    width: 450px;
+    width: 550px;
   }
   @media ${(props) => props.theme.breakPoints.laptop} {
     max-width: 550px;
-    width: 450px;
+    width: 550px;
   }
   @media ${(props) => props.theme.breakPoints.laptopL} {
     max-width: 550px;
-    width: 450px;
+    width: 550px;
   }
   @media ${(props) => props.theme.breakPoints.desktop} {
     max-width: 550px;
-    width: 450px;
+    width: 550px;
   }
 `;
 
@@ -216,11 +204,4 @@ const complexMixin = css`
   top: 10px;
   width: 70px;
   height: 40px;
-`;
-
-const InputInlinePair = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
 `;

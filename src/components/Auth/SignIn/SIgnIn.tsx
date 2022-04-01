@@ -1,24 +1,29 @@
-import palette from "../../../Tools/palette";
-import styled from "styled-components";
-import { DefaultButton } from "../../../Tools/Elements/buttons";
-import constPalletes from "../../../Tools/palette";
-import { useState } from "react";
+import palette from '../../../Tools/palette';
+import styled from 'styled-components';
+import constPalletes from '../../../Tools/palette';
+import { useState } from 'react';
+import { SchedulerButton } from '../../../Tools/Elements/buttons';
+import { CustomInput } from '../../../Tools/Elements/inputs';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [isUsernameValid, setUsernameValid] = useState(true);
   const [isPasswordValid, setPasswordValid] = useState(true);
 
   const onSubmitClick = () => {
-    let userName = (document.getElementById("usernameInp") as HTMLInputElement)
-      .value;
-let password = (document.getElementById("passwordInp") as HTMLInputElement)
-.value;
-    if (userName.split(" ").join("").length <= 0) {
+    const userName = (
+      document.getElementById('usernameInp') as HTMLInputElement
+    ).value;
+    const password = (
+      document.getElementById('passwordInp') as HTMLInputElement
+    ).value;
+    if (userName.split(' ').join('').length <= 0) {
       setUsernameValid(false);
     }
-    if (password.split(" ").join("").length <= 0) {
-        setPasswordValid(false);
-      }
+    if (password.split(' ').join('').length <= 0) {
+      setPasswordValid(false);
+    }
   };
   return (
     <MainContent>
@@ -38,26 +43,31 @@ let password = (document.getElementById("passwordInp") as HTMLInputElement)
             </label>
           </CustomInput>
 
-          <CustomInput isInputValid={isPasswordValid} onChange={() => setPasswordValid(true)}>
+          <CustomInput
+            isInputValid={isPasswordValid}
+            onChange={() => setPasswordValid(true)}
+          >
             <input type="password" id="passwordInp" required />
             <label htmlFor="passwordInp">
-              <span>Passwrod</span>
+              <span>Password</span>
             </label>
           </CustomInput>
 
-          <AuthButton
+          <SchedulerButton
             styleType="default"
             darkMode={true}
             onClick={() => onSubmitClick()}
           >
             Sign In
-          </AuthButton>
-          <AuthButton styleType="primary" darkMode={true}>
-            Create Account
-          </AuthButton>
-          <AuthButton styleType="secondary" darkMode={true}>
+          </SchedulerButton>
+
+          <SchedulerButton styleType="primary" darkMode={true} onClick = {() => navigate('/sign-up')}>
+              Create Account
+          </SchedulerButton>
+
+          <SchedulerButton styleType="secondary" darkMode={true} onClick = {() => navigate('/password-recovery')}>
             Reset Password
-          </AuthButton>
+          </SchedulerButton>
         </FormArea>
       </ContentArea>
     </MainContent>
@@ -141,13 +151,13 @@ const SignInLogo = styled.h1`
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
-  color: ${constPalletes["default-text-color"]};
+  color: ${constPalletes['default-text-color']};
 `;
 
 const WebTitle = styled.h3`
   margin: 0;
   padding: 0;
-  color: ${palette["default-text-color"]};
+  color: ${palette['default-text-color']};
   font-family: "Open Sans", sans-serif;
 `;
 
@@ -167,116 +177,4 @@ const FormArea = styled.div`
   flex-direction: column;
   row-gap: 15px;
   font-family: "Open Sans", sans-serif;
-`;
-
-const CustomInput = styled.div<{ isInputValid?: boolean }>`
-  position: relative;
-  width: 100%;
-  height: 40px;
-  margin: 0;
-  padding: 0;
-  border: 1px solid
-    ${({ isInputValid }) =>
-      isInputValid ? "rgba(56, 62, 86, 0.2)" : "#ff6868"};
-  box-sizing: border-box;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-radius: 5px;
-
-  input {
-    outline: none;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    color: ${(props) => props.theme.palette.dark.inputTextColor};
-    border: none;
-  }
-
-  label {
-    position: absolute;
-    bottom: 0px;
-    left: 0%;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    color: ${({ isInputValid }) =>
-      isInputValid ? " rgba(56, 62, 86, 0.4)" : "rgb(255, 0, 0, .4)"};
-    font-weight: bold;
-
-    span {
-      position: absolute;
-      bottom: 10px;
-      left: 0px;
-      transition: all 0.3s ease;
-      padding-left: 5px;
-      padding-right: 5px;
-    }
-  }
-
-  input:valid + label span {
-    color: ${({ isInputValid }) =>
-      isInputValid ? " rgba(56, 62, 86, 0.4)" : "rgb(255, 0, 0, .4)"};
-  }
-
-  input:focus + label span {
-    color: ${({ isInputValid }) =>
-      isInputValid ? " rgba(56, 62, 86, 0.8)" : "rgb(255, 0, 0, .8)"};
-  }
-
-  input:focus + label span,
-  input:valid + label span {
-    bottom: 5px;
-    transform: translateY(-150%);
-    background-color: white;
-    margin-left: 5px;
-  }
-
-  &:focus-within {
-    border: 1px solid
-      ${({ isInputValid }) => (isInputValid ? " #383e56" : "#f60000")};
-    transition: all 0.3s ease;
-  }
-`;
-
-const AuthButton = styled.button<{
-  styleType?: "default" | "primary" | "secondary";
-  darkMode?: true | false;
-}>`
-  width: 100%;
-  height: 50px;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-  color: ${(props) =>
-    props.darkMode
-      ? props?.styleType === "default"
-        ? props.theme.palette.buttons.dark.textLight
-        : ""
-      : ""};
-  background-color: ${(props) =>
-    props.styleType
-      ? props.theme.palette.buttons[props?.darkMode ? "dark" : "light"][
-          props.styleType
-        ]
-      : "transparent"};
-  border: ${(props) =>
-    props.styleType === "secondary"
-      ? `1px solid ${constPalletes["background-default"]}`
-      : "none"};
-  border-radius: 5px;
-  font-weight: 600 !important;
-
-  &:hover {
-    background-color: ${({ darkMode, styleType, theme }) =>
-      darkMode
-        ? styleType === "primary"
-          ? theme.palette.buttons.dark.primaryHover
-          : styleType === "secondary"
-          ? theme.palette.buttons.dark.secondaryHover
-          : theme.palette.buttons.dark.defaultHover
-        : ""};
-
-    transition: background-color 0.3s ease;
-  }
 `;
