@@ -116,7 +116,7 @@ const ContentArea = styled.div`
   padding-top: 50px;
   padding-bottom: 50px;
 
-  @media ${(props) => props.theme.breakPoints.mobileL} {
+  @media ${(props) => props.theme.breakPoints.mobileS} {
     max-width: 100%;
     width: 100%;
   }
@@ -129,20 +129,20 @@ const ContentArea = styled.div`
     width: 100%;
   }
   @media ${(props) => props.theme.breakPoints.tablet} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.laptop} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.laptopL} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.desktop} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
 `;
 
@@ -153,6 +153,7 @@ const PageTitle = styled.h2`
   font-family: "Open Sans", sans-serif;
   font-weight: 900;
 `;
+
 
 const Description = styled.span`
   margin: 0;
@@ -192,19 +193,19 @@ const SignUpContent = styled.div`
     width: 100%;
   }
   @media ${(props) => props.theme.breakPoints.tablet} {
-    max-width: 550px;
+    max-width: 450px;
     width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.laptop} {
-    max-width: 550px;
+    max-width: 450px;
     width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.laptopL} {
-    max-width: 550px;
+    max-width: 450px;
     width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.desktop} {
-    max-width: 550px;
+    max-width: 450px;
     width: 450px;
   }
 `;
