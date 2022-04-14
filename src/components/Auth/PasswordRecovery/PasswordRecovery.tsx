@@ -117,20 +117,20 @@ const ContentArea = styled.div`
     width: 100%;
   }
   @media ${(props) => props.theme.breakPoints.tablet} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.laptop} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.laptopL} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.desktop} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
 `;
 
@@ -180,20 +180,20 @@ const RecoveryContent = styled.div`
     width: 100%;
   }
   @media ${(props) => props.theme.breakPoints.tablet} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.laptop} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.laptopL} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
   @media ${(props) => props.theme.breakPoints.desktop} {
-    max-width: 550px;
-    width: 550px;
+    max-width: 450px;
+    width: 450px;
   }
 `;
 
